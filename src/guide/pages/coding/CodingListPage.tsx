@@ -261,20 +261,17 @@ export default function CodingListPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container">
       <header className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2">
             코딩 리스트
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
-            퍼블리싱 작업 현황을 확인하세요
-          </p>
         </div>
       </header>
 
-      {/* 진행률 및 상태 카운트 표시 */}
       <div className="mb-6 bg-white dark:bg-slate-900 rounded-lg shadow p-6 border dark:border-slate-700">
+        {/* 진행률 및 상태 카운트 표시 */}
         <div className="flex gap-8 flex-wrap">
           <button
             onClick={() => handleStatusFilter(null)}
@@ -331,10 +328,8 @@ export default function CodingListPage() {
             진행률: {statistics.progressRate}%
           </div>
         </div>
-      </div>
 
-      {/* 담당자 필터 */}
-      <div className="mb-6 flex gap-4 bg-white dark:bg-slate-900 rounded-lg shadow p-4 border dark:border-slate-700">
+        {/* 담당자 필터 */}
         <div className="flex items-center gap-2">
           <label
             htmlFor="manager"
