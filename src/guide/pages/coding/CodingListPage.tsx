@@ -50,12 +50,31 @@ export default function CodingListPage() {
     }, {} as Record<string, CodingItem[]>);
   }, [filteredData]);
 
+  // 각 아이템에 전체 번호를 매핑
+  const dataWithNumbers = useMemo(() => {
+    return filteredData.map((item, index) => ({
+      ...item,
+      globalNum: index + 1,
+    }));
+  }, [filteredData]);
+
+  // 번호가 포함된 카테고리별 그룹화
+  const groupedDataWithNumbers = useMemo(() => {
+    return dataWithNumbers.reduce((acc, item) => {
+      if (!acc[item.category]) {
+        acc[item.category] = [];
+      }
+      acc[item.category].push(item);
+      return acc;
+    }, {} as Record<string, (CodingItem & { globalNum: number })[]>);
+  }, [dataWithNumbers]);
+
   // 표시할 데이터 (중복 제거)
   const displayData = useMemo(() => {
     return selectedCategory
-      ? groupedData[selectedCategory] || []
-      : filteredData;
-  }, [selectedCategory, groupedData, filteredData]);
+      ? groupedDataWithNumbers[selectedCategory] || []
+      : dataWithNumbers;
+  }, [selectedCategory, groupedDataWithNumbers, dataWithNumbers]);
 
   // 통계 계산
   const statistics = useMemo(() => {
@@ -110,7 +129,10 @@ export default function CodingListPage() {
 
   // 테이블 렌더링 (useCallback으로 메모이제이션)
   const renderTable = useCallback(
-    (data: CodingItem[], showCategoryHeader?: string) => {
+    (
+      data: (CodingItem & { globalNum: number })[],
+      showCategoryHeader?: string
+    ) => {
       // 이전 값을 추적하기 위한 변수
       let prevDepth1 = "";
       let prevDepth2 = "";
@@ -127,6 +149,9 @@ export default function CodingListPage() {
             <table className="min-w-full table-auto">
               <thead className="bg-slate-600 dark:bg-slate-800">
                 <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    NUM
+                  </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     1Depth
                   </th>
@@ -160,7 +185,7 @@ export default function CodingListPage() {
                 {data.length === 0 ? (
                   <tr>
                     <td
-                      colSpan={9}
+                      colSpan={10}
                       className="px-6 py-8 text-center text-sm text-gray-500 dark:text-gray-400"
                     >
                       데이터가 없습니다.
@@ -198,6 +223,9 @@ export default function CodingListPage() {
                         key={`${item.id}-${index}`}
                         className="hover:bg-gray-50 dark:hover:bg-slate-800"
                       >
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
+                          {item.globalNum}
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                           {displayDepth1}
                         </td>
@@ -397,7 +425,7 @@ export default function CodingListPage() {
       <div role="tabpanel">
         {selectedCategory
           ? renderTable(displayData)
-          : Object.entries(groupedData).map(([category, items]) => (
+          : Object.entries(groupedDataWithNumbers).map(([category, items]) => (
               <div key={category}>{renderTable(items, category)}</div>
             ))}
       </div>
