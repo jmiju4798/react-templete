@@ -7,7 +7,7 @@ export default function PublishingGuidePage() {
 
       <div className="bg-white dark:bg-slate-900 rounded-lg border p-8">
         <p className="text-muted-foreground">
-          퍼블리싱 가이드 내용이 여기에 표시됩니다.
+          퍼블리싱 가이드 내용이 여기에 표시됩니다.11
         </p>
       </div>
     </div>

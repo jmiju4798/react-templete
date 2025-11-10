@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo, useCallback } from "react";
 import { codingListData, CodingItem } from "../../data/codingListData";
-import { PreviewModal } from "../../layouts/PreviewModal";
+import { PreviewModal } from "../../components/PreviewModal";
 
 // 상태별 색상을 컴포넌트 외부로 이동 (재생성 방지)
 const STATUS_COLORS = {

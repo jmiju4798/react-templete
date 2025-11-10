@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GuideLayout from "./guide/GuideLayout";
+import GuideLayout from "./guide/layouts/GuideLayout";
 import PublishingPage from "./pages/PublishingPage";
 
 function App() {
