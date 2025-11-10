@@ -4,8 +4,7 @@ export interface CodingItem {
   depth2: string;
   depth3: string;
   depth4: string;
-  id: string;
-  filePath: string; // 파일 경로
+  filePath: string; // 화면ID 겸 파일 경로
   preview: string;
   manager: string;
   status: "컨펌대기" | "진행중" | "완료";
@@ -19,7 +18,6 @@ export const codingListData: CodingItem[] = [
     depth2: "일반로그인",
     depth3: "로그인폼",
     depth4: "유효성검사",
-    id: "MCEM001",
     filePath: "login/TEST001",
     preview: "",
     manager: "홍길동",
@@ -32,7 +30,6 @@ export const codingListData: CodingItem[] = [
     depth2: "일반로그인",
     depth3: "로그인결과",
     depth4: "유효성검사",
-    id: "MCEM002",
     filePath: "login/TEST002",
     preview: "",
     manager: "홍길동",
@@ -45,7 +42,6 @@ export const codingListData: CodingItem[] = [
     depth2: "ID 찾기",
     depth3: "로그인폼",
     depth4: "유효성검사",
-    id: "MCEM003",
     filePath: "main/TEST003",
     preview: "",
     manager: "홍길동",
@@ -58,7 +54,6 @@ export const codingListData: CodingItem[] = [
     depth2: "목록",
     depth3: "페이징처리",
     depth4: "검색기능",
-    id: "MCBD001",
     filePath: "login/TEST001",
     preview: "",
     manager: "김철수",
@@ -71,7 +66,6 @@ export const codingListData: CodingItem[] = [
     depth2: "결과",
     depth3: "페이징처리",
     depth4: "검색기능",
-    id: "MCBD002",
     filePath: "main/TEST003",
     preview: "",
     manager: "김철수",
@@ -84,7 +78,6 @@ export const codingListData: CodingItem[] = [
     depth2: "목록",
     depth3: "페이징처리",
     depth4: "검색기능",
-    id: "MCCP001",
     filePath: "login/TEST001",
     preview: "",
     manager: "김철수",
@@ -97,7 +90,6 @@ export const codingListData: CodingItem[] = [
     depth2: "결과",
     depth3: "페이징처리",
     depth4: "검색기능",
-    id: "MCCP002",
     filePath: "login/TEST001",
     preview: "",
     manager: "김철수",
@@ -110,7 +102,6 @@ export const codingListData: CodingItem[] = [
     depth2: "",
     depth3: "페이징처리",
     depth4: "검색기능",
-    id: "MCCP003",
     filePath: "main/TEST003",
     preview: "",
     manager: "김철수",

@@ -220,7 +220,7 @@ export default function CodingListPage({
 
                     return (
                       <tr
-                        key={`${item.id}-${index}`}
+                        key={`${item.filePath}-${index}`}
                         className="hover:bg-gray-50 dark:hover:bg-slate-800"
                       >
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
@@ -249,13 +249,13 @@ export default function CodingListPage({
                             }
                           }}
                         >
-                          {item.id}
+                          {item.filePath}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                           <button
-                            onClick={() => handleOpenPreview(item.id)}
+                            onClick={() => handleOpenPreview(item.filePath)}
                             className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-xs transition-colors"
-                            aria-label={`${item.id} 미리보기`}
+                            aria-label={`${item.filePath} 미리보기`}
                           >
                             미리보기
                           </button>
