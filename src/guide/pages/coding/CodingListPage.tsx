@@ -13,10 +13,15 @@ const STATUS_COLORS = {
 
 type StatusType = keyof typeof STATUS_COLORS;
 
-export default function CodingListPage() {
+interface CodingListPageProps {
+  selectedCategory?: string | null;
+}
+
+export default function CodingListPage({
+  selectedCategory = null,
+}: CodingListPageProps) {
   const navigate = useNavigate();
   const [previewId, setPreviewId] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedManager, setSelectedManager] = useState<string>("all");
   const [selectedStatus, setSelectedStatus] = useState<StatusType | null>(null);
 
@@ -35,9 +40,11 @@ export default function CodingListPage() {
         selectedManager === "all" || item.manager === selectedManager;
       const statusMatch =
         selectedStatus === null || item.status === selectedStatus;
-      return managerMatch && statusMatch;
+      const categoryMatch =
+        !selectedCategory || item.category === selectedCategory;
+      return managerMatch && statusMatch && categoryMatch;
     });
-  }, [selectedManager, selectedStatus]);
+  }, [selectedManager, selectedStatus, selectedCategory]);
 
   // 카테고리별 그룹화
   const groupedData = useMemo(() => {
@@ -50,7 +57,7 @@ export default function CodingListPage() {
     }, {} as Record<string, CodingItem[]>);
   }, [filteredData]);
 
-  // 각 아이템에 전체 번호를 매핑
+  // 각 아이템에 전체 번호를 미리 할당
   const dataWithNumbers = useMemo(() => {
     return filteredData.map((item, index) => ({
       ...item,
@@ -68,13 +75,6 @@ export default function CodingListPage() {
       return acc;
     }, {} as Record<string, (CodingItem & { globalNum: number })[]>);
   }, [dataWithNumbers]);
-
-  // 표시할 데이터 (중복 제거)
-  const displayData = useMemo(() => {
-    return selectedCategory
-      ? groupedDataWithNumbers[selectedCategory] || []
-      : dataWithNumbers;
-  }, [selectedCategory, groupedDataWithNumbers, dataWithNumbers]);
 
   // 통계 계산
   const statistics = useMemo(() => {
@@ -293,14 +293,14 @@ export default function CodingListPage() {
       <header className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-            코딩 리스트
+            코딩 리스트{selectedCategory && ` - ${selectedCategory}`}
           </h1>
         </div>
       </header>
 
       <div className="mb-6 bg-white dark:bg-slate-900 rounded-lg shadow p-6 border dark:border-slate-700">
         {/* 진행률 및 상태 카운트 표시 */}
-        <div className="flex gap-8 flex-wrap">
+        <div className="flex gap-8 flex-wrap mb-4">
           <button
             onClick={() => handleStatusFilter(null)}
             className={`text-lg font-medium transition-colors ${
@@ -382,50 +382,13 @@ export default function CodingListPage() {
         </div>
       </div>
 
-      {/* 카테고리 탭 */}
-      <div className="mb-6">
-        <div
-          className="flex gap-2 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-t-lg px-4"
-          role="tablist"
-          aria-label="카테고리 선택"
-        >
-          <button
-            onClick={() => setSelectedCategory(null)}
-            className={`px-4 py-3 font-medium text-sm rounded-t-lg transition-colors ${
-              !selectedCategory
-                ? "bg-blue-500 text-white"
-                : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
-            role="tab"
-            aria-selected={!selectedCategory}
-            aria-label="전체 카테고리 보기"
-          >
-            전체
-          </button>
-          {Object.keys(groupedData).map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-3 font-medium text-sm rounded-t-lg transition-colors ${
-                selectedCategory === category
-                  ? "bg-blue-500 text-white"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-              }`}
-              role="tab"
-              aria-selected={selectedCategory === category}
-              aria-label={`${category} 카테고리 보기`}
-            >
-              {category} ({groupedData[category].length})
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* 테이블 렌더링 */}
       <div role="tabpanel">
         {selectedCategory
-          ? renderTable(displayData)
-          : Object.entries(groupedDataWithNumbers).map(([category, items]) => (
+          ? // 특정 카테고리 선택 시
+            renderTable(dataWithNumbers)
+          : // 전체 선택 시 - 카테고리별로 구분해서 표시
+            Object.entries(groupedDataWithNumbers).map(([category, items]) => (
               <div key={category}>{renderTable(items, category)}</div>
             ))}
       </div>
