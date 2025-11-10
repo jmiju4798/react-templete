@@ -106,8 +106,8 @@ export default function CodingListPage({
 
   // 페이지 이동 핸들러
   const handleNavigateToPage = useCallback(
-    (pageId: string) => {
-      navigate(`/pub/${pageId}`);
+    (filePath: string) => {
+      navigate(`/pub/${filePath}`);
     },
     [navigate]
   );
@@ -240,12 +240,12 @@ export default function CodingListPage({
                         </td>
                         <td
                           className="px-4 py-3 text-sm text-blue-600 dark:text-blue-400 underline cursor-pointer hover:text-blue-800 dark:hover:text-blue-300"
-                          onClick={() => handleNavigateToPage(item.id)}
+                          onClick={() => handleNavigateToPage(item.filePath)}
                           role="button"
                           tabIndex={0}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
-                              handleNavigateToPage(item.id);
+                              handleNavigateToPage(item.filePath);
                             }
                           }}
                         >

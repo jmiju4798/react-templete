@@ -1,17 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GuideLayout from "./guide/layouts/GuideLayout";
-import PublishingPage from "./pages/PublishingPage";
+import DynamicPage from "./pages/DynamicPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* 가이드 레이아웃 (사이드바 + 컨텐츠) */}
-        <Route path="/guide/*" element={<GuideLayout />} />
-
-        {/* 퍼블리싱 페이지 (사이드바 없는 독립 페이지) */}
-        <Route path="/pub/:pageId" element={<PublishingPage />} />
-
         {/* 기본 경로 */}
         <Route
           path="/"
@@ -24,16 +18,33 @@ function App() {
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   React Template 프로젝트에 오신 것을 환영합니다
                 </p>
-                <a
-                  href="/guide"
-                  className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors inline-block"
-                >
-                  가이드 보러가기
-                </a>
+                <div className="flex gap-4 justify-center">
+                  <a
+                    href="/guide"
+                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors inline-block"
+                  >
+                    가이드 보러가기
+                  </a>
+                  <a
+                    href="/pub/login/LoginPage"
+                    className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors inline-block"
+                  >
+                    로그인 화면 보기
+                  </a>
+                </div>
               </div>
             </div>
           }
         />
+
+        {/* 가이드 레이아웃 (사이드바 + 컨텐츠) */}
+        <Route path="/guide/*" element={<GuideLayout />} />
+
+        {/* ============================================ */}
+        {/* 동적 라우팅 - pub 폴더의 모든 화면 자동 처리  */}
+        {/* 파일만 추가하면 자동으로 라우팅!              */}
+        {/* ============================================ */}
+        <Route path="/pub/*" element={<DynamicPage />} />
 
         {/* 404 페이지 */}
         <Route
