@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useMemo, useCallback } from "react";
 import { codingListData, CodingItem } from "../../data/codingListData";
 import { PreviewModal } from "../../components/PreviewModal";
+import { PreviewTooltip } from "../../components/PreviewTooltip";
 
 // 상태별 색상을 컴포넌트 외부로 이동 (재생성 방지)
 const STATUS_COLORS = {
@@ -259,13 +260,15 @@ export default function CodingListPage({
                           {item.filePath}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                          <button
-                            onClick={() => handleOpenPreview(item.filePath)}
-                            className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-xs transition-colors"
-                            aria-label={`${item.filePath} 미리보기`}
-                          >
-                            미리보기
-                          </button>
+                          <PreviewTooltip pageId={item.filePath}>
+                            <button
+                              onClick={() => handleOpenPreview(item.filePath)}
+                              className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-xs transition-colors"
+                              aria-label={`${item.filePath} 미리보기`}
+                            >
+                              미리보기
+                            </button>
+                          </PreviewTooltip>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                           {item.manager}

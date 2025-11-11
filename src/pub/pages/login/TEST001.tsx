@@ -1,23 +1,29 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // TODO: 실제 로그인 로직 구현
-    console.log('Login attempt:', { email, password });
-    
+    console.log("Login attempt:", { email, password });
+
     // 임시: 메인 페이지로 이동
-    navigate('/pub');
+    navigate("/pub");
   };
 
   return (
@@ -25,9 +31,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">로그인</CardTitle>
-          <CardDescription>
-            이메일과 비밀번호를 입력하세요
-          </CardDescription>
+          <CardDescription>이메일과 비밀번호를 입력하세요</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -42,7 +46,7 @@ export default function LoginPage() {
                 required
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">비밀번호</Label>
               <Input
@@ -70,7 +74,7 @@ export default function LoginPage() {
             </Button>
 
             <div className="text-center text-sm text-muted-foreground">
-              계정이 없으신가요?{' '}
+              계정이 없으신가요?{" "}
               <Link to="/pub/signup" className="text-primary hover:underline">
                 회원가입
               </Link>
