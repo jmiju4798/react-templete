@@ -1,126 +1,184 @@
 import { ShowcaseSection } from "./Showcase-section";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function CardComp() {
   return (
     <div className="space-y-6">
       {/* Basic Card */}
       <ShowcaseSection
-        title="기본 카드 (Basic Card)"
-        description="기본적인 카드 레이아웃"
+        title="기본 카드"
+        description="Card 컴포넌트의 기본 구조입니다"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="border border-gray-200 dark:border-slate-700 rounded-lg p-6 bg-white dark:bg-slate-800">
-            <h3 className="text-lg font-semibold mb-2">카드 제목</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              카드의 내용이 들어갑니다. 이것은 간단한 예시 텍스트입니다.
+        <Card>
+          <CardHeader>
+            <CardTitle>기본 카드</CardTitle>
+            <CardDescription>Card 컴포넌트의 기본 구조입니다</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-600 dark:text-gray-300">
+              카드는 Header, Content, Footer로 구성됩니다.
             </p>
-          </div>
-          <div className="border border-gray-200 dark:border-slate-700 rounded-lg p-6 bg-white dark:bg-slate-800">
-            <h3 className="text-lg font-semibold mb-2">또 다른 카드</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              여러 개의 카드를 나란히 배치할 수 있습니다.
-            </p>
-          </div>
-        </div>
+          </CardContent>
+          <CardFooter>
+            <Button>자세히 보기</Button>
+          </CardFooter>
+        </Card>
       </ShowcaseSection>
 
-      {/* Card with Image */}
-      <ShowcaseSection
-        title="이미지가 있는 카드 (Card with Image)"
-        description="이미지를 포함한 카드"
-      >
+      {/* Grid Cards */}
+      <ShowcaseSection title="그리드 레이아웃">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-slate-800">
-            <div className="h-48 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-            <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2">이미지 카드 1</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                이미지 영역과 텍스트 영역이 함께 있는 카드입니다.
-              </p>
-            </div>
-          </div>
-          <div className="border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-slate-800">
-            <div className="h-48 bg-gradient-to-r from-purple-400 to-purple-600"></div>
-            <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2">이미지 카드 2</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                다양한 색상의 그라디언트를 사용할 수 있습니다.
-              </p>
-            </div>
-          </div>
-          <div className="border border-gray-200 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-slate-800">
-            <div className="h-48 bg-gradient-to-r from-green-400 to-green-600"></div>
-            <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2">이미지 카드 3</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                반응형 그리드 레이아웃으로 배치됩니다.
-              </p>
-            </div>
-          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>카드 1</CardTitle>
+              <CardDescription>첫 번째 카드</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 dark:text-gray-300">그리드 레이아웃으로 배치된 카드</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>카드 2</CardTitle>
+              <CardDescription>두 번째 카드</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 dark:text-gray-300">반응형으로 동작합니다</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>카드 3</CardTitle>
+              <CardDescription>세 번째 카드</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 dark:text-gray-300">모바일에서는 1줄로 표시</p>
+            </CardContent>
+          </Card>
         </div>
       </ShowcaseSection>
 
-      {/* Card with Actions */}
-      <ShowcaseSection
-        title="액션 버튼이 있는 카드 (Card with Actions)"
-        description="버튼을 포함한 인터랙티브 카드"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="border border-gray-200 dark:border-slate-700 rounded-lg p-6 bg-white dark:bg-slate-800">
-            <h3 className="text-lg font-semibold mb-2">프로젝트 A</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              프로젝트에 대한 간단한 설명이 들어갑니다.
-            </p>
-            <div className="flex gap-2">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-                상세보기
-              </button>
-              <button className="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
-                수정
-              </button>
-            </div>
-          </div>
-          <div className="border border-gray-200 dark:border-slate-700 rounded-lg p-6 bg-white dark:bg-slate-800">
-            <h3 className="text-lg font-semibold mb-2">프로젝트 B</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              또 다른 프로젝트에 대한 설명입니다.
-            </p>
-            <div className="flex gap-2">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-                상세보기
-              </button>
-              <button className="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
-                수정
-              </button>
-            </div>
-          </div>
+      {/* Stats Cards */}
+      <ShowcaseSection title="통계 카드">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>총 사용자</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">1,234</div>
+              <p className="text-xs text-green-600 mt-1">+12% 증가</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>활성 세션</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">567</div>
+              <p className="text-xs text-green-600 mt-1">+8% 증가</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>수익</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">$12,345</div>
+              <p className="text-xs text-green-600 mt-1">+23% 증가</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardDescription>전환율</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">3.2%</div>
+              <p className="text-xs text-red-600 mt-1">-2% 감소</p>
+            </CardContent>
+          </Card>
         </div>
       </ShowcaseSection>
 
-      {/* Card Variations */}
-      <ShowcaseSection
-        title="카드 변형 (Card Variations)"
-        description="다양한 스타일의 카드"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="border-2 border-blue-500 rounded-lg p-6 bg-blue-50 dark:bg-blue-950">
-            <h3 className="text-lg font-semibold mb-2 text-blue-700 dark:text-blue-300">
-              Primary Card
-            </h3>
-            <p className="text-blue-600 dark:text-blue-400">
-              강조된 스타일의 카드입니다.
-            </p>
-          </div>
-          <div className="shadow-lg rounded-lg p-6 bg-white dark:bg-slate-800">
-            <h3 className="text-lg font-semibold mb-2">Shadow Card</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              그림자 효과가 있는 카드입니다.
-            </p>
-          </div>
-          <div className="rounded-lg p-6 bg-gradient-to-br from-purple-500 to-pink-500 text-white">
-            <h3 className="text-lg font-semibold mb-2">Gradient Card</h3>
-            <p>그라디언트 배경의 카드입니다.</p>
-          </div>
+      {/* Feature Cards */}
+      <ShowcaseSection title="기능 소개 카드">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>⚡ 빠른 성능</CardTitle>
+              <CardDescription>초고속 렌더링</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 dark:text-gray-300">
+                최적화된 코드로 빠른 성능을 제공합니다. 사용자 경험을 극대화할
+                수 있습니다.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button variant="outline">더 알아보기</Button>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>🎨 커스터마이징</CardTitle>
+              <CardDescription>자유로운 스타일링</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 dark:text-gray-300">
+                Tailwind CSS로 쉽게 커스터마이징할 수 있습니다. 원하는 대로
+                디자인을 변경하세요.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button variant="outline">더 알아보기</Button>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>🔒 보안</CardTitle>
+              <CardDescription>안전한 데이터 관리</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 dark:text-gray-300">
+                최신 보안 기술로 데이터를 안전하게 보호합니다. 걱정 없이
+                사용하세요.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button variant="outline">더 알아보기</Button>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>📱 반응형</CardTitle>
+              <CardDescription>모든 기기에서 완벽하게</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 dark:text-gray-300">
+                모바일, 태블릿, 데스크톱 모든 환경에서 최적화된 화면을
+                제공합니다.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button variant="outline">더 알아보기</Button>
+            </CardFooter>
+          </Card>
         </div>
       </ShowcaseSection>
     </div>

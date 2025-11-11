@@ -1,120 +1,82 @@
 import { ShowcaseSection } from "./Showcase-section";
+import { Button } from "@/components/ui/button";
+import { Send, Download, Trash2, Plus } from "lucide-react";
 
 export default function ButtonComp() {
   return (
     <div className="space-y-6">
-      {/* Basic Buttons */}
+      {/* Variants */}
       <ShowcaseSection
-        title="기본 버튼 (Basic Buttons)"
+        title="버튼 변형 (Variants)"
         description="다양한 버튼 스타일"
       >
-        <div className="flex gap-2 flex-wrap">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-            Primary
-          </button>
-          <button className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors">
-            Secondary
-          </button>
-          <button className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors">
-            Danger
-          </button>
-          <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors">
-            Success
-          </button>
+        <div className="flex gap-1">
+          <Button>Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
         </div>
       </ShowcaseSection>
 
-      {/* Outline Buttons */}
+      {/* Sizes */}
       <ShowcaseSection
-        title="아웃라인 버튼 (Outline Buttons)"
-        description="테두리만 있는 버튼"
-      >
-        <div className="flex gap-2 flex-wrap">
-          <button className="px-4 py-2 border-2 border-blue-500 text-blue-500 rounded-md hover:bg-blue-50 dark:hover:bg-blue-950 transition-colors">
-            Primary Outline
-          </button>
-          <button className="px-4 py-2 border-2 border-gray-500 text-gray-500 rounded-md hover:bg-gray-50 dark:hover:bg-gray-950 transition-colors">
-            Secondary Outline
-          </button>
-          <button className="px-4 py-2 border-2 border-red-500 text-red-500 rounded-md hover:bg-red-50 dark:hover:bg-red-950 transition-colors">
-            Danger Outline
-          </button>
-        </div>
-      </ShowcaseSection>
-
-      {/* Button Sizes */}
-      <ShowcaseSection
-        title="버튼 크기 (Button Sizes)"
+        title="버튼 크기 (Sizes)"
         description="다양한 버튼 사이즈"
       >
-        <div className="flex gap-2 items-center flex-wrap">
-          <button className="px-2 py-1 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-            Small
-          </button>
-          <button className="px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-            Medium
-          </button>
-          <button className="px-6 py-3 text-base bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-            Large
-          </button>
+        <div className="flex gap-1">
+          <Button size="sm">Small</Button>
+          <Button size="default">Default</Button>
+          <Button size="lg">Large</Button>
+          <Button size="icon">
+            <Plus className="h-4 w-4" />
+          </Button>
         </div>
       </ShowcaseSection>
 
-      {/* Button States */}
+      {/* With Icons */}
       <ShowcaseSection
-        title="버튼 상태 (Button States)"
-        description="다양한 버튼 상태"
+        title="아이콘 버튼"
+        description="아이콘과 함께 사용하는 버튼"
       >
-        <div className="flex gap-2 flex-wrap">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-            Active
-          </button>
-          <button
-            className="px-4 py-2 bg-gray-300 text-gray-500 rounded-md cursor-not-allowed"
-            disabled
-          >
-            Disabled
-          </button>
-          <button
-            className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors"
-            onClick={() => alert("버튼 클릭!")}
-          >
-            Click Me
-          </button>
+        <div className="flex gap-1">
+          <Button>
+            <Send className="mr-2 h-4 w-4" />
+            전송
+          </Button>
+          <Button variant="secondary">
+            <Download className="mr-2 h-4 w-4" />
+            다운로드
+          </Button>
+          <Button variant="destructive">
+            <Trash2 className="mr-2 h-4 w-4" />
+            삭제
+          </Button>
+          <Button variant="outline" size="icon">
+            <Plus className="h-4 w-4" />
+          </Button>
         </div>
       </ShowcaseSection>
 
-      {/* Full Width Button */}
+      {/* States */}
+      <ShowcaseSection title="버튼 상태" description="다양한 버튼 상태">
+        <div className="flex gap-1">
+          <Button>Active</Button>
+          <Button disabled>Disabled</Button>
+          <Button onClick={() => alert("클릭!")}>Click Event</Button>
+        </div>
+      </ShowcaseSection>
+
+      {/* Full Width */}
       <ShowcaseSection
-        title="전체 너비 버튼 (Full Width)"
+        title="전체 너비 버튼"
         description="가로 전체를 차지하는 버튼"
       >
-        <div className="space-y-2">
-          <button className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
-            전체 너비 버튼
-          </button>
-          <button className="w-full px-4 py-2 border-2 border-blue-500 text-blue-500 rounded-md hover:bg-blue-50 dark:hover:bg-blue-950 transition-colors">
-            전체 너비 아웃라인
-          </button>
-        </div>
-      </ShowcaseSection>
-
-      {/* Rounded Buttons */}
-      <ShowcaseSection
-        title="둥근 버튼 (Rounded Buttons)"
-        description="다양한 border-radius"
-      >
-        <div className="flex gap-2 flex-wrap">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
-            Rounded
-          </button>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-            Rounded-lg
-          </button>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors">
-            Rounded-full
-          </button>
-        </div>
+        <Button className="w-full">전체 너비 버튼</Button>
+        <Button variant="outline" className="w-full">
+          Outline 전체 너비
+        </Button>
       </ShowcaseSection>
     </div>
   );

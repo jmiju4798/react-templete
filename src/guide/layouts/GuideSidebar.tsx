@@ -30,9 +30,26 @@ export default function GuideSidebar({
   // 컴포넌트 목록
   const components = useMemo(() => {
     return [
+      { id: "Accordion", name: "Accordion" },
+      { id: "Badge", name: "Badge" },
+      { id: "Breadcrumb", name: "Breadcrumb" },
       { id: "Button", name: "Button" },
-      { id: "Input", name: "Input" },
+      { id: "Calendar", name: "Calendar" },
       { id: "Card", name: "Card" },
+      { id: "Checkbox", name: "Checkbox" },
+      { id: "Dialog", name: "Dialog" },
+      { id: "Form", name: "Form" },
+      { id: "Icon", name: "Icon" },
+      { id: "Input", name: "Input" },
+      { id: "Label", name: "Label" },
+      { id: "Pagination", name: "Pagination" },
+      { id: "Radio", name: "Radio" },
+      { id: "Scrollarea", name: "Scrollarea" },
+      { id: "Select", name: "Select" },
+      { id: "Switch", name: "Switch" },
+      { id: "Table", name: "Table" },
+      { id: "Tabs", name: "Tabs" },
+      { id: "Textarea", name: "Textarea" },
     ];
   }, []);
 
@@ -67,7 +84,7 @@ export default function GuideSidebar({
   };
 
   const isCodingPage = location.pathname.includes("/guide/coding");
-  const isComponentsGuidePage = location.pathname.includes("/guide/components");
+  const isComponentsPage = location.pathname.includes("/guide/components");
 
   return (
     <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-slate-700 h-screen overflow-y-auto sticky top-0">
@@ -150,7 +167,7 @@ export default function GuideSidebar({
               </div>
 
               {/* 컴포넌트 서브메뉴 - 컴포넌트 페이지에 있을 때만 표시 */}
-              {isComponentsOpen && isComponentsGuidePage && (
+              {isComponentsOpen && isComponentsPage && (
                 <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-slate-700 pl-2">
                   {components.map((component) => (
                     <li key={component.id}>

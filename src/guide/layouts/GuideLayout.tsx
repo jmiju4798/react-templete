@@ -1,15 +1,23 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import GuideHeader from "./GuideHeader";
 import GuideSidebar from "./GuideSidebar";
 import CodingListPage from "../pages/coding/CodingListPage";
-import ComponentsGuidePage from "../pages/components/ComponentsGuidePage";
+import ComponentsPage from "../pages/components/ComponentsPage";
 
 export default function GuideLayout() {
+  const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedComponent, setSelectedComponent] = useState<string | null>(
     null
   );
+
+  // 경로가 변경될 때 컴포넌트 선택 초기화
+  useEffect(() => {
+    if (location.pathname === "/guide/components") {
+      setSelectedComponent(null);
+    }
+  }, [location.pathname]);
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
@@ -44,7 +52,7 @@ export default function GuideLayout() {
             <Route
               path="/components"
               element={
-                <ComponentsGuidePage selectedComponent={selectedComponent} />
+                <ComponentsPage selectedComponent={selectedComponent} />
               }
             />
 
