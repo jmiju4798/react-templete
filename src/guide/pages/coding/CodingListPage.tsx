@@ -104,10 +104,17 @@ export default function CodingListPage({
     return STATUS_COLORS[status as StatusType] || STATUS_COLORS.컨펌대기;
   }, []);
 
-  // 페이지 이동 핸들러
+  // 페이지 이동 핸들러 (Ctrl 키 누르면 새 창으로 열림)
   const handleNavigateToPage = useCallback(
-    (filePath: string) => {
-      navigate(`/pub/${filePath}`);
+    (filePath: string, event?: React.MouseEvent | React.KeyboardEvent) => {
+      const url = `/pub/${filePath}`;
+      
+      // Ctrl(Windows/Linux) 또는 Cmd(Mac) 키가 눌렸는지 확인
+      if (event && (event.ctrlKey || event.metaKey)) {
+        window.open(url, '_blank');
+      } else {
+        navigate(url);
+      }
     },
     [navigate]
   );
@@ -240,12 +247,12 @@ export default function CodingListPage({
                         </td>
                         <td
                           className="px-4 py-3 text-sm text-blue-600 dark:text-blue-400 underline cursor-pointer hover:text-blue-800 dark:hover:text-blue-300"
-                          onClick={() => handleNavigateToPage(item.filePath)}
+                          onClick={(e) => handleNavigateToPage(item.filePath, e)}
                           role="button"
                           tabIndex={0}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
-                              handleNavigateToPage(item.filePath);
+                              handleNavigateToPage(item.filePath, e);
                             }
                           }}
                         >
