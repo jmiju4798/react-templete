@@ -3,13 +3,20 @@ import { Routes, Route } from "react-router-dom";
 import GuideHeader from "./GuideHeader";
 import GuideSidebar from "./GuideSidebar";
 import CodingListPage from "../pages/coding/CodingListPage";
-import ComponentsListPage from "../pages/components/ComponentsListPage";
+import ComponentsGuidePage from "../pages/components/ComponentsGuidePage";
 
 export default function GuideLayout() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedComponent, setSelectedComponent] = useState<string | null>(
+    null
+  );
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
+  };
+
+  const handleComponentChange = (component: string | null) => {
+    setSelectedComponent(component);
   };
 
   return (
@@ -20,6 +27,8 @@ export default function GuideLayout() {
         <GuideSidebar
           selectedCategory={selectedCategory}
           onCategoryChange={handleCategoryChange}
+          selectedComponent={selectedComponent}
+          onComponentChange={handleComponentChange}
         />
 
         {/* 메인 컨텐츠 */}
@@ -32,7 +41,12 @@ export default function GuideLayout() {
             />
 
             {/* 컴포넌트 */}
-            <Route path="/components" element={<ComponentsListPage />} />
+            <Route
+              path="/components"
+              element={
+                <ComponentsGuidePage selectedComponent={selectedComponent} />
+              }
+            />
 
             {/* 퍼블리싱 가이드 */}
             <Route
