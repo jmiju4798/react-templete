@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { codingListData } from "../guide/data/codingListData";
 
 // Vite의 import.meta.glob을 사용하여 모든 페이지 파일을 미리 로드
-const pages = import.meta.glob("../pub/pages/**/*.tsx");
+const pages = import.meta.glob("./pages/**/*.tsx");
 
 export default function DynamicPage() {
   const { "*": path } = useParams();
@@ -33,8 +33,8 @@ export default function DynamicPage() {
       try {
         // 가능한 경로 패턴들
         const possiblePaths = [
-          `../pub/pages/${path}.tsx`,
-          `../pub/pages/${path}/index.tsx`,
+          `./pages/${path}.tsx`,
+          `./pages/${path}/index.tsx`,
         ];
 
         let loaded = false;
@@ -162,59 +162,8 @@ export default function DynamicPage() {
 
   // 컴포넌트 렌더링
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* 네비게이션 바 */}
-      {pageInfo && (
-        <nav className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-10 shadow-sm">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => navigate("/guide/coding")}
-              className="text-blue-600 hover:underline flex items-center gap-2 transition-colors"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              코딩 리스트로 돌아가기
-            </button>
-
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-mono font-semibold text-gray-700">
-                {pageInfo.id}
-              </span>
-              <span className="text-sm text-gray-600 hidden md:block">
-                {pageInfo.depth1} &gt; {pageInfo.depth2} &gt; {pageInfo.depth3}{" "}
-                &gt; {pageInfo.depth4}
-              </span>
-              <span
-                className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  pageInfo.status === "완료"
-                    ? "bg-green-100 text-green-800"
-                    : pageInfo.status === "진행중"
-                    ? "bg-yellow-100 text-yellow-800"
-                    : "bg-gray-100 text-gray-800"
-                }`}
-              >
-                {pageInfo.status}
-              </span>
-            </div>
-          </div>
-        </nav>
-      )}
-
-      {/* 실제 화면 컴포넌트 */}
-      <div>
-        <Component />
-      </div>
+    <div>
+      <Component />
     </div>
   );
 }

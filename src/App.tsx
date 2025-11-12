@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GuideLayout from "./guide/layouts/GuideLayout";
-import DynamicPage from "./pages/DynamicPage";
+import DynamicPage from "./pub/DynamicPage";
 
 function App() {
   return (
