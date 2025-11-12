@@ -109,40 +109,38 @@ export default function GuideSidebar({
   return (
     <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-slate-700 sticky top-0">
       <div className="p-4">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-6 px-2">
           가이드
         </h2>
         <nav>
-          <ul className="space-y-1 h-[85vh] overflow-y-auto">
+          <ul className="space-y-2 h-[85vh] overflow-y-auto pr-2">
             {/* 코딩 리스트 (서브메뉴 있음) */}
             <li>
-              <div className="flex items-center">
-                <NavLink
-                  to="/guide/coding"
-                  onClick={() => handleCategoryClick(null)}
-                  className={({ isActive }) =>
-                    `flex-1 px-4 py-2 rounded-lg transition-colors ${
-                      isActive
-                        ? "bg-blue-500 text-white"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
-                    }`
-                  }
-                >
-                  코딩 리스트
-                </NavLink>
-              </div>
+              <NavLink
+                to="/guide/coding"
+                onClick={() => handleCategoryClick(null)}
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-3 rounded-lg font-medium transition-all ${
+                    isActive
+                      ? "bg-blue-500 text-white shadow-md"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
+                  }`
+                }
+              >
+                코딩 리스트
+              </NavLink>
 
               {/* 카테고리 서브메뉴 - 코딩 리스트 페이지에 있을 때만 표시 */}
               {isCodingOpen && isCodingPage && (
-                <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-slate-700 pl-2">
+                <ul className="mt-2 ml-6 space-y-1 border-l-2 border-blue-200 dark:border-blue-800 pl-4">
                   {/* 전체 */}
                   <li>
                     <button
                       onClick={() => handleCategoryClick(null)}
-                      className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
+                      className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all ${
                         selectedCategory === null
-                          ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
-                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
+                          ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 -ml-[2px] pl-[10px]"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 hover:text-gray-900 dark:hover:text-gray-200"
                       }`}
                     >
                       전체
@@ -154,10 +152,10 @@ export default function GuideSidebar({
                     <li key={category}>
                       <button
                         onClick={() => handleCategoryClick(category)}
-                        className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
+                        className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all ${
                           selectedCategory === category
-                            ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
-                            : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
+                            ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 -ml-[2px] pl-[10px]"
+                            : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 hover:text-gray-900 dark:hover:text-gray-200"
                         }`}
                       >
                         {category}
@@ -170,33 +168,31 @@ export default function GuideSidebar({
 
             {/* 컴포넌트 (서브메뉴 있음) */}
             <li>
-              <div className="flex items-center">
-                <NavLink
-                  to="/guide/components"
-                  onClick={() => handleComponentClick(null)}
-                  className={({ isActive }) =>
-                    `flex-1 px-4 py-2 rounded-lg transition-colors ${
-                      isActive
-                        ? "bg-blue-500 text-white"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
-                    }`
-                  }
-                >
-                  컴포넌트 가이드
-                </NavLink>
-              </div>
+              <NavLink
+                to="/guide/components"
+                onClick={() => handleComponentClick(null)}
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-3 rounded-lg font-medium transition-all ${
+                    isActive
+                      ? "bg-blue-500 text-white shadow-md"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
+                  }`
+                }
+              >
+                컴포넌트 가이드
+              </NavLink>
 
               {/* 컴포넌트 서브메뉴 - 컴포넌트 페이지에 있을 때만 표시 */}
               {isComponentsOpen && isComponentsPage && (
-                <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-slate-700 pl-2">
+                <ul className="mt-2 ml-6 space-y-1 border-l-2 border-blue-200 dark:border-blue-800 pl-4">
                   {components.map((component) => (
                     <li key={component.id}>
                       <button
                         onClick={() => handleComponentClick(component.id)}
-                        className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
+                        className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all ${
                           selectedComponent === component.id
-                            ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
-                            : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
+                            ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 -ml-[2px] pl-[10px]"
+                            : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 hover:text-gray-900 dark:hover:text-gray-200"
                         }`}
                       >
                         {component.name}
@@ -209,32 +205,30 @@ export default function GuideSidebar({
 
             {/* 퍼블리싱 가이드 (서브메뉴 있음) */}
             <li>
-              <div className="flex items-center">
-                <NavLink
-                  to="/guide/publishing"
-                  onClick={() => handlePublishingTabClick(null)}
-                  className={({ isActive }) =>
-                    `flex-1 px-4 py-2 rounded-lg transition-colors ${
-                      isActive
-                        ? "bg-blue-500 text-white"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
-                    }`
-                  }
-                >
-                  퍼블리싱 가이드
-                </NavLink>
-              </div>
+              <NavLink
+                to="/guide/publishing"
+                onClick={() => handlePublishingTabClick(null)}
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-3 rounded-lg font-medium transition-all ${
+                    isActive
+                      ? "bg-blue-500 text-white shadow-md"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
+                  }`
+                }
+              >
+                퍼블리싱 가이드
+              </NavLink>
 
               {/* 퍼블리싱 서브메뉴 - 퍼블리싱 페이지에 있을 때만 표시 */}
               {isPublishingOpen && isPublishingPage && (
-                <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-slate-700 pl-2">
+                <ul className="mt-2 ml-6 space-y-1 border-l-2 border-blue-200 dark:border-blue-800 pl-4">
                   <li>
                     <button
                       onClick={() => handlePublishingTabClick("structure")}
-                      className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
+                      className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all ${
                         selectedPublishingTab === "structure"
-                          ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
-                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
+                          ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 -ml-[2px] pl-[10px]"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 hover:text-gray-900 dark:hover:text-gray-200"
                       }`}
                     >
                       퍼블리싱 파일 구조
@@ -243,10 +237,10 @@ export default function GuideSidebar({
                   <li>
                     <button
                       onClick={() => handlePublishingTabClick("accessibility")}
-                      className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
+                      className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all ${
                         selectedPublishingTab === "accessibility"
-                          ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
-                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
+                          ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 -ml-[2px] pl-[10px]"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 hover:text-gray-900 dark:hover:text-gray-200"
                       }`}
                     >
                       접근성 가이드
