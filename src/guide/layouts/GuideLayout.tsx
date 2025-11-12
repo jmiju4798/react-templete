@@ -4,6 +4,7 @@ import GuideHeader from "./GuideHeader";
 import GuideSidebar from "./GuideSidebar";
 import CodingListPage from "../pages/coding/CodingListPage";
 import ComponentsPage from "../pages/components/ComponentsPage";
+import PublishingGuidePage from "../pages/publishing/PublishingGuidePage";
 
 export default function GuideLayout() {
   const location = useLocation();
@@ -11,11 +12,18 @@ export default function GuideLayout() {
   const [selectedComponent, setSelectedComponent] = useState<string | null>(
     null
   );
+  const [selectedPublishingTab, setSelectedPublishingTab] = useState<string | null>(
+    null
+  );
 
-  // 경로가 변경될 때 컴포넌트 선택 초기화
+  // 경로가 변경될 때 선택 초기화
   useEffect(() => {
     if (location.pathname === "/guide/components") {
       setSelectedComponent(null);
+    }
+    if (location.pathname === "/guide/publishing") {
+      // 퍼블리싱 가이드 처음 진입 시 기본적으로 'structure' 표시
+      setSelectedPublishingTab('structure');
     }
   }, [location.pathname]);
 
@@ -25,6 +33,10 @@ export default function GuideLayout() {
 
   const handleComponentChange = (component: string | null) => {
     setSelectedComponent(component);
+  };
+
+  const handlePublishingTabChange = (tab: string | null) => {
+    setSelectedPublishingTab(tab);
   };
 
   return (
@@ -37,6 +49,8 @@ export default function GuideLayout() {
           onCategoryChange={handleCategoryChange}
           selectedComponent={selectedComponent}
           onComponentChange={handleComponentChange}
+          selectedPublishingTab={selectedPublishingTab}
+          onPublishingTabChange={handlePublishingTabChange}
         />
 
         {/* 메인 컨텐츠 */}
@@ -60,14 +74,9 @@ export default function GuideLayout() {
             <Route
               path="/publishing"
               element={
-                <div className="text-center py-20">
-                  <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">
-                    퍼블리싱 가이드
-                  </h1>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    퍼블리싱 가이드 페이지
-                  </p>
-                </div>
+                <PublishingGuidePage 
+                  selectedTab={selectedPublishingTab}
+                />
               }
             />
           </Routes>

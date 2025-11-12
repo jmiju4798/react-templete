@@ -7,6 +7,8 @@ interface GuideSidebarProps {
   onCategoryChange?: (category: string | null) => void;
   selectedComponent?: string | null;
   onComponentChange?: (component: string | null) => void;
+  selectedPublishingTab?: string | null;
+  onPublishingTabChange?: (tab: string | null) => void;
 }
 
 export default function GuideSidebar({
@@ -14,10 +16,13 @@ export default function GuideSidebar({
   onCategoryChange,
   selectedComponent,
   onComponentChange,
+  selectedPublishingTab,
+  onPublishingTabChange,
 }: GuideSidebarProps) {
   const location = useLocation();
   const [isCodingOpen, setIsCodingOpen] = useState(false);
   const [isComponentsOpen, setIsComponentsOpen] = useState(false);
+  const [isPublishingOpen, setIsPublishingOpen] = useState(false);
 
   // 코딩 리스트의 고유한 카테고리 추출
   const codingCategories = useMemo(() => {
@@ -53,13 +58,16 @@ export default function GuideSidebar({
     ];
   }, []);
 
-  // 현재 경로가 코딩 리스트 관련이면 자동으로 서브메뉴 열기
+  // 현재 경로가 각 가이드 관련이면 자동으로 서브메뉴 열기
   useEffect(() => {
     if (location.pathname.includes("/guide/coding")) {
       setIsCodingOpen(true);
     }
     if (location.pathname.includes("/guide/components")) {
       setIsComponentsOpen(true);
+    }
+    if (location.pathname.includes("/guide/publishing")) {
+      setIsPublishingOpen(true);
     }
   }, [location.pathname]);
 
@@ -69,6 +77,10 @@ export default function GuideSidebar({
 
   const handleComponentsClick = () => {
     setIsComponentsOpen(!isComponentsOpen);
+  };
+
+  const handlePublishingClick = () => {
+    setIsPublishingOpen(!isPublishingOpen);
   };
 
   const handleCategoryClick = (category: string | null) => {
@@ -83,8 +95,16 @@ export default function GuideSidebar({
     }
   };
 
+  const handlePublishingTabClick = (tab: string | null) => {
+    if (onPublishingTabChange) {
+      // tab이 null이면 'structure'로 설정 (기본 표시)
+      onPublishingTabChange(tab === null ? 'structure' : tab);
+    }
+  };
+
   const isCodingPage = location.pathname.includes("/guide/coding");
   const isComponentsPage = location.pathname.includes("/guide/components");
+  const isPublishingPage = location.pathname.includes("/guide/publishing");
 
   return (
     <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-slate-700 h-screen overflow-y-auto sticky top-0">
@@ -187,20 +207,53 @@ export default function GuideSidebar({
               )}
             </li>
 
-            {/* 퍼블리싱 가이드 */}
+            {/* 퍼블리싱 가이드 (서브메뉴 있음) */}
             <li>
-              <NavLink
-                to="/guide/publishing"
-                className={({ isActive }) =>
-                  `block px-4 py-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
-                  }`
-                }
-              >
-                퍼블리싱 가이드
-              </NavLink>
+              <div className="flex items-center">
+                <NavLink
+                  to="/guide/publishing"
+                  onClick={() => handlePublishingTabClick(null)}
+                  className={({ isActive }) =>
+                    `flex-1 px-4 py-2 rounded-lg transition-colors ${
+                      isActive
+                        ? "bg-blue-500 text-white"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
+                    }`
+                  }
+                >
+                  퍼블리싱 가이드
+                </NavLink>
+              </div>
+
+              {/* 퍼블리싱 서브메뉴 - 퍼블리싱 페이지에 있을 때만 표시 */}
+              {isPublishingOpen && isPublishingPage && (
+                <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-slate-700 pl-2">
+                  <li>
+                    <button
+                      onClick={() => handlePublishingTabClick('structure')}
+                      className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
+                        selectedPublishingTab === 'structure'
+                          ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
+                      }`}
+                    >
+                      퍼블리싱 파일 구조
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => handlePublishingTabClick('accessibility')}
+                      className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
+                        selectedPublishingTab === 'accessibility'
+                          ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
+                      }`}
+                    >
+                      접근성 가이드
+                    </button>
+                  </li>
+                </ul>
+              )}
             </li>
           </ul>
         </nav>
