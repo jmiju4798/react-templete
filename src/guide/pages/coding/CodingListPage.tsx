@@ -109,10 +109,10 @@ export default function CodingListPage({
   const handleNavigateToPage = useCallback(
     (filePath: string, event?: React.MouseEvent | React.KeyboardEvent) => {
       const url = `/pub/${filePath}`;
-      
+
       // Ctrl(Windows/Linux) 또는 Cmd(Mac) 키가 눌렸는지 확인
       if (event && (event.ctrlKey || event.metaKey)) {
-        window.open(url, '_blank');
+        window.open(url, "_blank");
       } else {
         navigate(url);
       }
@@ -248,7 +248,9 @@ export default function CodingListPage({
                         </td>
                         <td
                           className="px-4 py-3 text-sm text-blue-600 dark:text-blue-400 underline cursor-pointer hover:text-blue-800 dark:hover:text-blue-300"
-                          onClick={(e) => handleNavigateToPage(item.filePath, e)}
+                          onClick={(e) =>
+                            handleNavigateToPage(item.filePath, e)
+                          }
                           role="button"
                           tabIndex={0}
                           onKeyDown={(e) => {
@@ -309,86 +311,112 @@ export default function CodingListPage({
       </header>
 
       <div className="mb-6 bg-white dark:bg-slate-900 rounded-lg shadow p-6 border dark:border-slate-700">
-        {/* 진행률 및 상태 카운트 표시 */}
-        <div className="flex gap-8 flex-wrap mb-4">
-          <button
-            onClick={() => handleStatusFilter(null)}
-            className={`text-lg font-medium transition-colors ${
-              selectedStatus === null
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
-            aria-label="전체 항목 보기"
-            aria-pressed={selectedStatus === null}
-          >
-            전체: {statistics.total}
-          </button>
-          <button
-            onClick={() => handleStatusFilter("진행중")}
-            className={`text-lg font-medium transition-colors ${
-              selectedStatus === "진행중"
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
-            aria-label="진행중인 항목만 보기"
-            aria-pressed={selectedStatus === "진행중"}
-          >
-            진행중: {statistics.inProgress}
-          </button>
-          <button
-            onClick={() => handleStatusFilter("컨펌대기")}
-            className={`text-lg font-medium transition-colors ${
-              selectedStatus === "컨펌대기"
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
-            aria-label="컨펌대기 항목만 보기"
-            aria-pressed={selectedStatus === "컨펌대기"}
-          >
-            컨펌대기: {statistics.pending}
-          </button>
-          <button
-            onClick={() => handleStatusFilter("완료")}
-            className={`text-lg font-medium transition-colors ${
-              selectedStatus === "완료"
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
-            aria-label="완료된 항목만 보기"
-            aria-pressed={selectedStatus === "완료"}
-          >
-            완료: {statistics.completed}
-          </button>
-          <div
-            className="text-lg font-medium text-gray-800 dark:text-gray-100"
-            aria-label={`전체 진행률 ${statistics.progressRate}퍼센트`}
-          >
-            진행률: {statistics.progressRate}%
-          </div>
-        </div>
+        <div className="flex items-center flex-wrap gap-20">
+          {/* 진행률 및 상태 카운트 표시 */}
+          <div className="flex items-center gap-3 flex-wrap">
+            <button
+              onClick={() => handleStatusFilter(null)}
+              className={`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 ${
+                selectedStatus === null
+                  ? "bg-blue-500 text-white shadow-md hover:bg-blue-600"
+                  : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700"
+              }`}
+              aria-label="전체 항목 보기"
+              aria-pressed={selectedStatus === null}
+            >
+              전체 <span className="ml-1.5 font-bold">{statistics.total}</span>
+            </button>
 
-        {/* 담당자 필터 */}
-        <div className="flex items-center gap-2">
-          <label
-            htmlFor="manager"
-            className="text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            담당자
-          </label>
-          <select
-            id="manager"
-            value={selectedManager}
-            onChange={(e) => setSelectedManager(e.target.value)}
-            className="form-select rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            aria-label="담당자 선택"
-          >
-            <option value="all">전체</option>
-            {managers.map((manager) => (
-              <option key={manager} value={manager}>
-                {manager}
-              </option>
-            ))}
-          </select>
+            <button
+              onClick={() => handleStatusFilter("진행중")}
+              className={`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 ${
+                selectedStatus === "진행중"
+                  ? "bg-yellow-500 text-white shadow-md hover:bg-yellow-600"
+                  : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700"
+              }`}
+              aria-label="진행중인 항목만 보기"
+              aria-pressed={selectedStatus === "진행중"}
+            >
+              진행중{" "}
+              <span className="ml-1.5 font-bold">{statistics.inProgress}</span>
+            </button>
+
+            <button
+              onClick={() => handleStatusFilter("컨펌대기")}
+              className={`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 ${
+                selectedStatus === "컨펌대기"
+                  ? "bg-gray-500 text-white shadow-md hover:bg-gray-600"
+                  : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700"
+              }`}
+              aria-label="컨펌대기 항목만 보기"
+              aria-pressed={selectedStatus === "컨펌대기"}
+            >
+              컨펌대기{" "}
+              <span className="ml-1.5 font-bold">{statistics.pending}</span>
+            </button>
+
+            <button
+              onClick={() => handleStatusFilter("완료")}
+              className={`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 ${
+                selectedStatus === "완료"
+                  ? "bg-green-500 text-white shadow-md hover:bg-green-600"
+                  : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700"
+              }`}
+              aria-label="완료된 항목만 보기"
+              aria-pressed={selectedStatus === "완료"}
+            >
+              완료{" "}
+              <span className="ml-1.5 font-bold">{statistics.completed}</span>
+            </button>
+
+            <div className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-md">
+              <span className="font-semibold">진행률</span>
+              <span className="font-bold text-lg">
+                {statistics.progressRate}%
+              </span>
+            </div>
+          </div>
+
+          {/* 담당자 필터 */}
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="manager"
+              className="text-sm font-semibold text-gray-700 dark:text-gray-300"
+            >
+              담당자
+            </label>
+            <div className="relative">
+              <select
+                id="manager"
+                value={selectedManager}
+                onChange={(e) => setSelectedManager(e.target.value)}
+                className="appearance-none px-4 py-2.5 pr-10 rounded-lg border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 font-medium shadow-sm hover:border-gray-300 dark:hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer"
+                aria-label="담당자 선택"
+              >
+                <option value="all">전체</option>
+                {managers.map((manager) => (
+                  <option key={manager} value={manager}>
+                    {manager}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 dark:text-gray-400">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
