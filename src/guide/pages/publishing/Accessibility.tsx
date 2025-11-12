@@ -5,7 +5,7 @@ export default function Accessibility() {
         <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6 pb-3 border-b-2 border-gray-200 dark:border-slate-700">
           시맨틱 HTML
         </h2>
-        
+
         <div className="bg-gray-50 dark:bg-slate-900 rounded-lg p-6 mb-6">
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
             적절한 HTML 태그 사용
@@ -13,7 +13,7 @@ export default function Accessibility() {
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             의미에 맞는 HTML 태그를 사용하여 구조를 명확하게 전달합니다.
           </p>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="border-2 border-green-500 rounded-lg overflow-hidden">
               <h4 className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-4 py-3 font-semibold">
@@ -21,7 +21,7 @@ export default function Accessibility() {
               </h4>
               <div className="bg-gray-900 p-4">
                 <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`<header>
+                  {`<header>
   <nav>
     <ul>
       <li><a href="/">홈</a></li>
@@ -40,14 +40,14 @@ export default function Accessibility() {
                 </pre>
               </div>
             </div>
-            
+
             <div className="border-2 border-red-500 rounded-lg overflow-hidden">
               <h4 className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-4 py-3 font-semibold">
                 ✗ 나쁜 예
               </h4>
               <div className="bg-gray-900 p-4">
                 <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`<div class="header">
+                  {`<div class="header">
   <div class="nav">
     <div class="menu">
       <div><a href="/">홈</a></div>
@@ -94,7 +94,7 @@ export default function Accessibility() {
         <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6 pb-3 border-b-2 border-gray-200 dark:border-slate-700">
           키보드 접근성
         </h2>
-        
+
         <div className="bg-gray-50 dark:bg-slate-900 rounded-lg p-6 mb-6">
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
             키보드 네비게이션
@@ -130,7 +130,7 @@ export default function Accessibility() {
               </h4>
               <div className="bg-gray-900 p-4">
                 <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`button:focus {
+                  {`button:focus {
   outline: 2px solid #4a90e2;
   outline-offset: 2px;
 }
@@ -143,14 +143,14 @@ button:focus-visible {
                 </pre>
               </div>
             </div>
-            
+
             <div className="border-2 border-red-500 rounded-lg overflow-hidden">
               <h4 className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-4 py-3 font-semibold">
                 ✗ 나쁜 예
               </h4>
               <div className="bg-gray-900 p-4">
                 <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`button:focus {
+                  {`button:focus {
   outline: none; 
   /* 절대 사용 금지 */
 }`}
@@ -165,7 +165,7 @@ button:focus-visible {
         <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6 pb-3 border-b-2 border-gray-200 dark:border-slate-700">
           색상 및 대비
         </h2>
-        
+
         <div className="bg-gray-50 dark:bg-slate-900 rounded-lg p-6 mb-6">
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
             명도 대비
@@ -176,30 +176,46 @@ button:focus-visible {
           <ul className="space-y-2 text-gray-700 dark:text-gray-300 mb-6">
             <li className="flex items-start">
               <span className="font-semibold mr-2">•</span>
-              <span><strong>일반 텍스트:</strong> 최소 4.5:1 대비율</span>
+              <span>
+                <strong>일반 텍스트:</strong> 최소 4.5:1 대비율
+              </span>
             </li>
             <li className="flex items-start">
               <span className="font-semibold mr-2">•</span>
-              <span><strong>큰 텍스트 (18pt 이상):</strong> 최소 3:1 대비율</span>
+              <span>
+                <strong>큰 텍스트 (18pt 이상):</strong> 최소 3:1 대비율
+              </span>
             </li>
             <li className="flex items-start">
               <span className="font-semibold mr-2">•</span>
-              <span><strong>UI 컴포넌트:</strong> 최소 3:1 대비율</span>
+              <span>
+                <strong>UI 컴포넌트:</strong> 최소 3:1 대비율
+              </span>
             </li>
           </ul>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="text-center">
-              <div style={{background: '#ffffff', color: '#333333'}} className="border-2 border-green-500 rounded-lg p-6 mb-2 font-semibold">
+              <div
+                style={{ background: "#ffffff", color: "#333333" }}
+                className="border-2 border-green-500 rounded-lg p-6 mb-2 font-semibold"
+              >
                 대비율: 12.6:1 ✓
               </div>
-              <span className="text-sm text-gray-600 dark:text-gray-400">좋은 예</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                좋은 예
+              </span>
             </div>
             <div className="text-center">
-              <div style={{background: '#ffffff', color: '#cccccc'}} className="border-2 border-red-500 rounded-lg p-6 mb-2 font-semibold">
+              <div
+                style={{ background: "#ffffff", color: "#cccccc" }}
+                className="border-2 border-red-500 rounded-lg p-6 mb-2 font-semibold"
+              >
                 대비율: 1.6:1 ✗
               </div>
-              <span className="text-sm text-gray-600 dark:text-gray-400">나쁜 예</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                나쁜 예
+              </span>
             </div>
           </div>
         </div>
@@ -211,7 +227,7 @@ button:focus-visible {
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             정보를 전달할 때 색상 외에 추가적인 시각적 단서를 제공합니다.
           </p>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="border-2 border-green-500 rounded-lg overflow-hidden">
               <h4 className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-4 py-3 font-semibold">
@@ -220,25 +236,33 @@ button:focus-visible {
               <div className="bg-white dark:bg-slate-800 p-4 space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">✓</span>
-                  <span className="text-green-600 dark:text-green-400 font-semibold">성공</span>
+                  <span className="text-green-600 dark:text-green-400 font-semibold">
+                    성공
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-lg">✗</span>
-                  <span className="text-red-600 dark:text-red-400 font-semibold">오류</span>
+                  <span className="text-red-600 dark:text-red-400 font-semibold">
+                    오류
+                  </span>
                 </div>
               </div>
             </div>
-            
+
             <div className="border-2 border-red-500 rounded-lg overflow-hidden">
               <h4 className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-4 py-3 font-semibold">
                 ✗ 나쁜 예
               </h4>
               <div className="bg-white dark:bg-slate-800 p-4 space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-green-600 dark:text-green-400 font-semibold">성공</span>
+                  <span className="text-green-600 dark:text-green-400 font-semibold">
+                    성공
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-red-600 dark:text-red-400 font-semibold">오류</span>
+                  <span className="text-red-600 dark:text-red-400 font-semibold">
+                    오류
+                  </span>
                 </div>
               </div>
             </div>
@@ -250,7 +274,7 @@ button:focus-visible {
         <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6 pb-3 border-b-2 border-gray-200 dark:border-slate-700">
           ARIA 속성
         </h2>
-        
+
         <div className="space-y-5">
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg p-5">
             <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2 font-mono">
@@ -261,7 +285,7 @@ button:focus-visible {
             </p>
             <div className="bg-gray-900 rounded-lg p-4">
               <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`<button aria-label="메뉴 열기">
+                {`<button aria-label="메뉴 열기">
   <span class="icon-menu"></span>
 </button>`}
               </pre>
@@ -277,7 +301,7 @@ button:focus-visible {
             </p>
             <div className="bg-gray-900 rounded-lg p-4">
               <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`<h2 id="dialog-title">알림</h2>
+                {`<h2 id="dialog-title">알림</h2>
 <div role="dialog" 
      aria-labelledby="dialog-title">
   내용...
@@ -295,7 +319,7 @@ button:focus-visible {
             </p>
             <div className="bg-gray-900 rounded-lg p-4">
               <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`<input 
+                {`<input 
   type="password" 
   aria-describedby="password-help"
 />
@@ -315,49 +339,12 @@ button:focus-visible {
             </p>
             <div className="bg-gray-900 rounded-lg p-4">
               <pre className="text-gray-300 font-mono text-sm overflow-x-auto">
-{`<span class="icon" aria-hidden="true">
+                {`<span class="icon" aria-hidden="true">
   ★
 </span>
 <span>즐겨찾기</span>`}
               </pre>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6 pb-3 border-b-2 border-gray-200 dark:border-slate-700">
-          체크리스트
-        </h2>
-        
-        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg p-6">
-          <div className="space-y-3">
-            {[
-              '모든 이미지에 적절한 alt 속성 제공',
-              '키보드로 모든 기능 사용 가능',
-              '포커스 표시가 명확함',
-              '충분한 색상 대비 (4.5:1 이상)',
-              '시맨틱 HTML 사용',
-              '논리적인 헤딩 구조',
-              '폼 레이블과 입력 필드 연결',
-              '적절한 ARIA 속성 사용',
-              '동영상에 자막 제공',
-              '색상에만 의존하지 않는 정보 전달'
-            ].map((item, index) => (
-              <div key={index} className="flex items-center gap-3 p-3 border-b border-gray-100 dark:border-slate-800 last:border-0">
-                <input 
-                  type="checkbox" 
-                  id={`check${index}`}
-                  className="w-5 h-5 cursor-pointer"
-                />
-                <label 
-                  htmlFor={`check${index}`}
-                  className="text-gray-700 dark:text-gray-300 cursor-pointer flex-1"
-                >
-                  {item}
-                </label>
-              </div>
-            ))}
           </div>
         </div>
       </section>
