@@ -30,7 +30,7 @@ export function PreviewTooltip({ pageId, children }: PreviewTooltipProps) {
   const handleMouseMove = (e: React.MouseEvent) => {
     // 마우스 위치 기준 오른쪽 위에 배치
     setPosition({
-      x: e.clientX + 10,
+      x: e.clientX + 3,
       y: e.clientY + 300,
     });
   };

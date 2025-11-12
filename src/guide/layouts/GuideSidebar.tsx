@@ -98,7 +98,7 @@ export default function GuideSidebar({
   const handlePublishingTabClick = (tab: string | null) => {
     if (onPublishingTabChange) {
       // tab이 null이면 'structure'로 설정 (기본 표시)
-      onPublishingTabChange(tab === null ? 'structure' : tab);
+      onPublishingTabChange(tab === null ? "structure" : tab);
     }
   };
 
@@ -107,13 +107,13 @@ export default function GuideSidebar({
   const isPublishingPage = location.pathname.includes("/guide/publishing");
 
   return (
-    <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-slate-700 h-screen overflow-y-auto sticky top-0">
+    <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-slate-700 sticky top-0">
       <div className="p-4">
         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
           가이드
         </h2>
         <nav>
-          <ul className="space-y-1">
+          <ul className="space-y-1 h-[85vh] overflow-y-auto">
             {/* 코딩 리스트 (서브메뉴 있음) */}
             <li>
               <div className="flex items-center">
@@ -230,9 +230,9 @@ export default function GuideSidebar({
                 <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-slate-700 pl-2">
                   <li>
                     <button
-                      onClick={() => handlePublishingTabClick('structure')}
+                      onClick={() => handlePublishingTabClick("structure")}
                       className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
-                        selectedPublishingTab === 'structure'
+                        selectedPublishingTab === "structure"
                           ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
                           : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
                       }`}
@@ -242,9 +242,9 @@ export default function GuideSidebar({
                   </li>
                   <li>
                     <button
-                      onClick={() => handlePublishingTabClick('accessibility')}
+                      onClick={() => handlePublishingTabClick("accessibility")}
                       className={`w-full text-left block px-4 py-2 rounded-lg text-sm transition-colors ${
-                        selectedPublishingTab === 'accessibility'
+                        selectedPublishingTab === "accessibility"
                           ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-medium"
                           : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800"
                       }`}

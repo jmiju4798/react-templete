@@ -29,7 +29,7 @@ export default function DynamicPage() {
     const loadComponent = async () => {
       setIsLoading(true);
       setError("");
-      
+
       try {
         // 가능한 경로 패턴들
         const possiblePaths = [
@@ -38,7 +38,7 @@ export default function DynamicPage() {
         ];
 
         let loaded = false;
-        
+
         for (const testPath of possiblePaths) {
           if (pages[testPath]) {
             console.log("✅ 파일 찾음:", testPath);
@@ -215,16 +215,6 @@ export default function DynamicPage() {
       <div>
         <Component />
       </div>
-
-      {/* 개발 정보 (개발 중에만 표시) */}
-      {import.meta.env.DEV && pageInfo && (
-        <div className="fixed bottom-4 right-4 bg-blue-50 border border-blue-200 rounded-lg p-3 shadow-lg text-xs max-w-xs">
-          <p className="font-semibold text-blue-900 mb-1">🔧 개발 정보</p>
-          <p className="text-blue-700">ID: {pageInfo.id}</p>
-          <p className="text-blue-700 break-all">경로: {path}</p>
-          <p className="text-blue-700">담당자: {pageInfo.manager}</p>
-        </div>
-      )}
     </div>
   );
 }

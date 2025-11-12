@@ -157,34 +157,34 @@ export default function CodingListPage({
             <table className="min-w-full table-auto">
               <thead className="bg-slate-600 dark:bg-slate-800">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-16 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     NUM
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-32 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     1Depth
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-32 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     2Depth
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-32 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     3Depth
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-40 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     4Depth
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-48 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     화면 ID
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-28 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     미리보기
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-24 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     담당자
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-28 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     진행상태
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  <th className="w-32 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     비고
                   </th>
                 </tr>

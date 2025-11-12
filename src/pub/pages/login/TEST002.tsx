@@ -226,18 +226,6 @@ export default function LoginSign() {
             </p>
           </div>
         </form>
-
-        {/* 개발 정보 표시 */}
-        <div className="mt-8 p-4 bg-indigo-50 rounded-md border border-indigo-200">
-          <p className="text-xs text-indigo-800 font-semibold mb-1">
-            🎨 개발 정보
-          </p>
-          <p className="text-xs text-indigo-700">화면 ID: MCEM002</p>
-          <p className="text-xs text-indigo-700">
-            경로: src/pub/pages/login/LoginSign.tsx
-          </p>
-          <p className="text-xs text-indigo-700">URL: /pub/login/LoginSign</p>
-        </div>
       </div>
     </div>
   );
